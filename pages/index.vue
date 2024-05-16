@@ -35,7 +35,7 @@ async function fetchData() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': process.env.KWOTES_API_KEY || '',
+        'Authorization': process.env.KWOTES_API_KEY || '1TmRZgvB35ThTdBlXjQH,hmgUVFyZcCKCr7DouGolSQ==,k=1',
       },
     })
     const data = await response.json()
