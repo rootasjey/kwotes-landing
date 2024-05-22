@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { ssr: true },
     '/themes': { ssr: true },
-    '/about': { prerender: true },
+    // '/about': { prerender: true },
   },
   vuefire: {
     config: {
