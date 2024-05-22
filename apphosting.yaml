@@ -1,0 +1,17 @@
+env:
+  - variable: VFIRE_API_KEY
+    secret: vfire-api-key
+  - variable: VFIRE_AUTH_DOMAIN
+    secret: vfire-auth-domain
+  - variable: VFIRE_DATABASE_URL
+    secret: vfire-database-url
+  - variable: VFIRE_PROJECT_ID
+    secret: vfire-project-id
+  - variable: VFIRE_STORAGE_BUCKET
+    secret: vfire-storage-bucket
+  - variable: VFIRE_MESSAGING_SENDER_ID
+    secret: vfire-messaging-sender-id
+  - variable: VFIRE_APP_ID
+    secret: vfire-app-id
+  - variable: VFIRE_MEASUREMENT_ID
+    secret: vfire-measurement-id

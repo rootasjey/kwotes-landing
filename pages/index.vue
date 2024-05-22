@@ -20,7 +20,10 @@
 </template>
 
 <script setup lang="ts">
+import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import { ref, type Ref } from 'vue'
+import { useCollection, useFirestore } from 'vuefire'
+
 const loading = ref(false)
 const error = ref("")
 const heroQuote: Ref<any> = ref(null)
@@ -30,21 +33,18 @@ const quotes: Ref<any[]> = ref([])
 async function fetchData() {
   loading.value = true
 
-  try {
-    const response = await fetch('https://us-central1-memorare-98eee.cloudfunctions.net/api/v1/quotes?orderBy=created_at&order=desc', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': process.env.KWOTES_API_KEY || '1TmRZgvB35ThTdBlXjQH,hmgUVFyZcCKCr7DouGolSQ==,k=1',
-      },
-    })
-    const data = await response.json()
-
-    for (const quote of data.response.quotes) {
-      quotes.value.push(quote)
+  try {    
+    const db = useFirestore()
+    // const quotes = useCollection(collection(db, 'quotes'))
+    const quotesRef = collection(db, "quotes");
+    const q = query(quotesRef, orderBy("created_at", "desc"), limit(3))
+    const querySnapshot = await getDocs(q)
+    
+    for (const doc of querySnapshot.docs) {
+      quotes.value.push(doc.data())
     }
-
-    heroQuote.value = data.response.quotes[0]
+    
+    heroQuote.value = quotes.value.at(0)
   } catch (err) {
     error.value = "error"
   } finally {
