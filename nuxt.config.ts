@@ -5,6 +5,11 @@ export default defineNuxtConfig({
   modules: [
     "nuxt-vuefire",
   ],
+  routeRules: {
+    '/': { ssr: true },
+    '/themes': { ssr: true },
+    '/about': { prerender: true },
+  },
   vuefire: {
     config: {
       apiKey: process.env.VFIRE_API_KEY,

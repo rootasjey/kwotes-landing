@@ -15,3 +15,5 @@ env:
     secret: vfire-app-id
   - variable: VFIRE_MEASUREMENT_ID
     secret: vfire-measurement-id
+  - variable: GOOGLE_APPLICATION_CREDENTIALS
+    secret: google-application-credentials
